@@ -8,9 +8,10 @@ public class BossHealth : MonoBehaviour
 {
     public Image _healthBarImage;
 
+    public float _maxHealth = 200f;
     [SerializeField] float _health;
-    float _maxHealth = 100f;
-    float _lerpSpeed;
+
+    float _lerpSpeed;//How speed the bar change 
     bool _dead;
 
     void Awake()
@@ -24,7 +25,6 @@ public class BossHealth : MonoBehaviour
             _health = _maxHealth;
 
         _lerpSpeed = 1f * Time.deltaTime;
-
         _healthBarImage.fillAmount = Mathf.Lerp(_healthBarImage.fillAmount, (_health / _maxHealth), _lerpSpeed);
         ChangeColor();
     }
@@ -41,14 +41,15 @@ public class BossHealth : MonoBehaviour
 
         if (_health > 0)
         {
-
+            // Take Damage Sound
         }
         else
         {
             if (!_dead)
             {
                 _dead = true;
-                Debug.Log("Dead");
+                gameObject.SetActive(false);
+                Debug.Log("You Win");
             }
         }
     }
