@@ -26,10 +26,12 @@ public class Bullet : MonoBehaviour
     void Update()
     {
         transform.SetParent(lockal.transform);
-
-        Vector2 moveDirection =(target.transform.position - transform.position).normalized * bulletSpeed;
-        rb.velocity = new Vector2(moveDirection.x,moveDirection.y);
-        Destroy(this.gameObject,bulletLifeTime);
+        if (target != null)
+        {
+            Vector2 moveDirection = (target.transform.position - transform.position).normalized * bulletSpeed;
+            rb.velocity = new Vector2(moveDirection.x, moveDirection.y);
+            Destroy(this.gameObject, bulletLifeTime);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

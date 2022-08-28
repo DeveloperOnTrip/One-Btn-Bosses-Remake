@@ -6,10 +6,12 @@ using DG.Tweening;
 
 public class BossHealth : MonoBehaviour
 {
-    public Image _healthBarImage;
-
     public float _maxHealth = 200f;
     [SerializeField] float _health;
+
+    public Image _healthBarImage;
+    public Color _maxHealthColor;
+    public Color _minHealthColor;
 
     float _lerpSpeed;//How speed the bar change 
     bool _dead;
@@ -31,7 +33,7 @@ public class BossHealth : MonoBehaviour
 
     void ChangeColor()
     {
-        Color healthColor = Color.Lerp(Color.red, Color.green, (_health / _maxHealth));
+        Color healthColor = Color.Lerp(_minHealthColor, _maxHealthColor, (_health / _maxHealth));
         _healthBarImage.color = healthColor;
     }
 

@@ -15,28 +15,28 @@ public class Gun : MonoBehaviour
     public float bulletTimeZero;
     public float bulletTimeOne;
     public float bulletTimeTwo;
-    float bulletTimer = 10;//Bullet Timer
+    float bulletTimer;//Bullet Timer
 
     [Header("Gun Options")]
     [Tooltip("How fast the gun will shoot")][Range(0.1f,2)] public float fireRate;
     float nextFireTime;
 
-
+   
     private void Update()
     {
         bulletTimer += Time.deltaTime;
         if(bulletTimer <=0)
             bulletTimer = 0;
 
-        if (nextFireTime < Time.time)
+        if (nextFireTime < Time.time)//Fire Rate
         {
             nextFireTime = Time.time + fireRate;
-
-            if(bulletTimer > bulletTimeZero && bulletTimer < bulletTimeOne)
+            //Bullet Timer
+            if (bulletTimer > bulletTimeZero && bulletTimer < bulletTimeOne)
                 Instantiate(bulletPrefabZero, shootPoint);
-            if(bulletTimer > bulletTimeOne && bulletTimer < bulletTimeTwo)
+            if (bulletTimer > bulletTimeOne && bulletTimer < bulletTimeTwo)
                 Instantiate(bulletPrefabOne, shootPoint);
-            if(bulletTimer > bulletTimeTwo)
+            if (bulletTimer > bulletTimeTwo)
                 Instantiate(bulletPrefabTwo, shootPoint);
         }
 
